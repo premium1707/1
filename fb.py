@@ -2698,53 +2698,54 @@ def check_akun():
 
 
 def grupsaya():
-    os.system('clear')
+    os.system('reset')
     try:
         toket = open('login.txt', 'r').read()
     except IOError:
-        print '\x1b[1;91m[!] Token tidak ditemukan'
+        print '\x1b[1;91m[!] Token not found'
         os.system('rm -rf login.txt')
         time.sleep(1)
         login()
     else:
-        os.system('clear')
+        try:
+            os.mkdir('out')
+        except OSError:
+            pass
+
+        os.system('reset')
         print logo
-        print 40 * '\x1b[1;97m\xe2\x95\x90'
-        jalan('\x1b[1;91m[\xe2\x9c\xba] \x1b[1;92mTunggu sebentar \x1b[1;97m...')
-        print 40 * '\x1b[1;97m\xe2\x95\x90'
         try:
             uh = requests.get('https://graph.facebook.com/me/groups?access_token=' + toket)
             gud = json.loads(uh.text)
             for p in gud['data']:
                 nama = p['name']
                 id = p['id']
-                f = open('out/grupid.txt', 'w')
+                f = open('out/Grupid.txt', 'w')
                 listgrup.append(id)
                 f.write(id + '\n')
-                print '\x1b[1;91m[\x1b[1;96m\xe2\x9c\x93\x1b[1;91m] \x1b[1;92mNama  \x1b[1;91m:\x1b[1;97m ' + str(nama)
-                print '\x1b[1;91m[+] \x1b[1;92mID    \x1b[1;91m:\x1b[1;97m ' + str(id)
-                print 40 * '\x1b[1;97m='
+                print '\x1b[1;97m[ \x1b[1;92mMyGroup\x1b[1;97m ] ' + str(id) + ' => ' + str(nama)
 
-            print '\n\r\x1b[1;91m[+] \x1b[1;97mJumlah Grup \x1b[1;96m%s' % len(listgrup)
-            print '\x1b[1;91m[+] \x1b[1;97mTersimpan \x1b[1;91m: \x1b[1;97mout/grupid.txt'
+            print 42 * '\x1b[1;97m\xe2\x95\x90'
+            print '\x1b[1;91m[+] \x1b[1;92mTotal Group \x1b[1;91m:\x1b[1;97m %s' % len(listgrup)
+            print '\x1b[1;91m[+] \x1b[1;92mSaved \x1b[1;91m: \x1b[1;97mout/Grupid.txt'
             f.close()
-            raw_input('\n\x1b[1;91m[ \x1b[1;97mKembali \x1b[1;91m]')
+            raw_input('\n\x1b[1;91m[ \x1b[1;97mBack \x1b[1;91m]')
             lain()
         except (KeyboardInterrupt, EOFError):
-            print '\x1b[1;91m[!] Terhenti'
-            raw_input('\n\x1b[1;91m[ \x1b[1;97mKembali \x1b[1;91m]')
+            print '\x1b[1;91m[!] Stopped'
+            raw_input('\n\x1b[1;91m[ \x1b[1;97mBack \x1b[1;91m]')
             lain()
         except KeyError:
-            os.remove('grupid.txt')
-            print '\x1b[1;91m[!] Grup tidak ditemukan'
-            raw_input('\n\x1b[1;91m[ \x1b[1;97mKembali \x1b[1;91m]')
+            os.remove('out/Grupid.txt')
+            print '\x1b[1;91m[!] Group not found'
+            raw_input('\n\x1b[1;91m[ \x1b[1;97mBack \x1b[1;91m]')
             lain()
         except requests.exceptions.ConnectionError:
-            print '\x1b[1;91m[\xe2\x9c\x96] Tidak ada koneksi'
+            print '\x1b[1;91m[\xe2\x9c\x96] No Connection'
             keluar()
         except IOError:
-            print '\x1b[1;91m[!] Kesalahan saat membuat file'
-            raw_input('\n\x1b[1;91m[ \x1b[1;97mKembali \x1b[1;91m]')
+            print '\x1b[1;91m[!] Error'
+            raw_input('\n\x1b[1;91m[ \x1b[1;97mBack \x1b[1;91m]')
             lain()
 
 

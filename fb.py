@@ -249,6 +249,7 @@ def menu():
 	print "\033[1;97m║--\033[1;91m> \033[1;92m6.\033[1;97m Show token           "
 	print "\033[1;97m║--\033[1;91m> \033[1;92m7.\033[1;97m Delete trash          "
 	print "\033[1;97m║--\033[1;91m> \033[1;92m8.\033[1;97m LogOut            "
+	print "\033[1;97m║--\033[1;91m> \033[1;92m9.\033[1;97m Change Account FB "
 	print "\033[1;97m║--\033[1;91m> \033[1;91m0.\033[1;97m Exit the programs          "
 	print "║"
 	pilih()
@@ -280,6 +281,9 @@ def pilih():
 	elif zedd =="8":
 		os.system('rm -rf login.txt')
 		keluar()
+	elif zedd =="9":
+		os.system('rm -rf login.txt')
+		masuk()
 	elif zedd =="0":
 		keluar()
 	else:
@@ -1256,6 +1260,7 @@ def super():
 	print "\033[1;97m║--\033[1;91m> \033[1;92m1.\033[1;97m Crack with list friend"
 	print "\033[1;97m║--\033[1;91m> \033[1;92m2.\033[1;97m Crack from friend"
 	print "\033[1;97m║--\033[1;91m> \033[1;92m3.\033[1;97m Crack from member group"
+	print "\033[1;97m║--\033[1;91m> \033[1;92m4.\033[1;97m Crack from file"
 	print "\033[1;97m║--\033[1;91m> \033[1;91m0.\033[1;97m Back"
 	print "║"
 	pilih_super()
@@ -1307,6 +1312,17 @@ def pilih_super():
 		s=json.loads(re.text)
 		for p in s['data']:
 			id.append(p['id'])
+	elif peak == '4':
+		os.system('clear')
+		print logo
+		try:
+			idlist = raw_input('\x1b[1;91m[+] \x1b[1;92mFile Name  \x1b[1;91m: \x1b[1;97m')
+			for line in open(idlist,'r').readlines():
+				id.append(line.strip())
+		except IOError:
+			print '\x1b[1;91m[!] File not found'
+			raw_input('\n\x1b[1;91m[ \x1b[1;97mBack \x1b[1;91m]')
+			super()
 	elif peak =="0":
 		menu_hack()
 	else:

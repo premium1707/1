@@ -122,7 +122,7 @@ def masuk():
 		login()
 	elif msuk =="2":
 		tokenz()
-	elif msuk =="3"
+	elif msuk =="3":
 		os.system('rm -rf login.txt')
 		login()
 	elif msuk =="0":
